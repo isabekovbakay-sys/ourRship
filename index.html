@@ -1,141 +1,169 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Для тебя 💌</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffb6c1, #ff69b4);
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding: 0 10px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Для тебя 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
 
-    #intro, #main {
-      width: 100%;
-      max-width: 500px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 10px;
+  }
 
-    /* Заставка */
-    #intro {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 182, 193, 0.9);
-      backdrop-filter: blur(10px);
-      z-index: 10;
-      opacity: 1;
-      transition: opacity 1s ease;
-      justify-content: center;
-      padding: 0 20px;
-    }
+  #intro, #main {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
 
-    #intro h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.5rem;
-      color: white;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-    }
+  /* Заставка */
+  #intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 182, 193, 0.9);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 1s ease;
+    justify-content: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+  }
 
-    #intro button {
-      padding: 12px 24px;
-      border: none;
-      border-radius: 25px;
-      background: white;
-      color: #ff69b4;
-      font-size: 1.2em;
-      cursor: pointer;
-      opacity: 0;
-      animation: fadeIn 2s 1s forwards;
-      transition: transform 0.2s;
-    }
+  #intro h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+  }
 
-    #intro button:hover {
-      transform: scale(1.05);
-    }
+  #intro button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #ff69b4;
+    font-size: 1.2em;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeIn 2s 1s forwards;
+    transition: transform 0.2s;
+  }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
+  #intro button:hover {
+    transform: scale(1.05);
+  }
 
-    #main {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      color: white;
-      padding: 20px;
-      width: 100%;
-    }
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
 
-    h1.main-title {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-    }
+  #main {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
 
-    p {
-      font-size: 1rem;
-      margin-bottom: 15px;
-    }
+  h1.main-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+  }
 
-    textarea {
-      width: 100%;
-      max-width: 100%;
-      height: 100px;
-      border-radius: 15px;
-      border: none;
-      padding: 12px;
-      font-size: 1rem;
-      outline: none;
-      resize: none;
-    }
+  p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+  }
 
-    button.submit {
-      margin-top: 15px;
+  textarea {
+    width: 100%;
+    max-width: 100%;
+    height: 100px;
+    border-radius: 15px;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    outline: none;
+    resize: vertical;
+  }
+
+  button.submit {
+    margin-top: 15px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #ff69b4;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  button.submit:hover {
+    transform: scale(1.05);
+  }
+
+  .emoji {
+    position: absolute;
+    bottom: -50px;
+    font-size: 1.8rem;
+    animation: floatUp linear forwards;
+  }
+
+  @keyframes floatUp {
+    from { transform: translateY(0) translateX(0); opacity: 1; }
+    to { transform: translateY(-110vh) translateX(var(--x-move)); opacity: 0; }
+  }
+
+  @media (max-width: 480px) {
+    #intro h1, h1.main-title {
+      font-size: 2rem;
+    }
+    #intro button, button.submit {
+      font-size: 1em;
       padding: 10px 20px;
-      border: none;
-      border-radius: 25px;
-      background: white;
-      color: #ff69b4;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: transform 0.2s;
     }
-
-    button.submit:hover {
-      transform: scale(1.05);
+    textarea {
+      height: 90px;
+      font-size: 0.95rem;
     }
-
-    .emoji {
-      position: absolute;
-      bottom: -50px;
-      font-size: 1.8rem;
-      animation: floatUp linear forwards;
-    }
-
-    @keyframes floatUp {
-      from { transform: translateY(0) translateX(0); opacity: 1; }
-      to { transform: translateY(-110vh) translateX(var(--x-move)); opacity: 0; }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
   <!-- Заставка -->
@@ -159,6 +187,7 @@
       setTimeout(() => {
         intro.style.display = 'none';
         document.getElementById('main').style.display = 'flex';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 1000);
     }
 
