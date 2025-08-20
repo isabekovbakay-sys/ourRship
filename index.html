@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 <title>Для тебя 💌</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 <style>
@@ -12,15 +12,15 @@
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #ffb6c1, #ff69b4);
     overflow-x: hidden;
-    overflow-y: auto;
-    height: 100%;
+    min-height: 100vh;
+    scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
   }
 
   body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     padding: 0 10px;
   }
@@ -28,10 +28,7 @@
   #intro, #main {
     width: 100%;
     max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
   }
@@ -39,24 +36,22 @@
   /* Заставка */
   #intro {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 182, 193, 0.9);
+    inset: 0;
+    background: rgba(255, 182, 193, 0.95);
     backdrop-filter: blur(12px);
     z-index: 10;
     opacity: 1;
     transition: opacity 1s ease;
-    justify-content: center;
-    padding: 0 20px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
+    text-align: center;
   }
 
   #intro h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: white;
     margin-bottom: 20px;
     opacity: 0;
@@ -69,11 +64,12 @@
     border-radius: 25px;
     background: white;
     color: #ff69b4;
-    font-size: 1.2em;
+    font-size: 1.1rem;
     cursor: pointer;
     opacity: 0;
     animation: fadeIn 2s 1s forwards;
     transition: transform 0.2s;
+    touch-action: manipulation;
   }
 
   #intro button:hover {
@@ -99,7 +95,7 @@
 
   h1.main-title {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.2rem;
+    font-size: 1.9rem;
     margin-bottom: 20px;
     word-wrap: break-word;
   }
@@ -107,19 +103,18 @@
   p {
     font-size: 1rem;
     margin-bottom: 15px;
-    word-wrap: break-word;
   }
 
   textarea {
     width: 100%;
-    max-width: 100%;
-    height: 100px;
+    height: 110px;
     border-radius: 15px;
     border: none;
     padding: 12px;
     font-size: 1rem;
     outline: none;
     resize: vertical;
+    box-sizing: border-box;
   }
 
   button.submit {
@@ -129,13 +124,23 @@
     border-radius: 25px;
     background: white;
     color: #ff69b4;
-    font-size: 1.1em;
+    font-size: 1.05rem;
     cursor: pointer;
     transition: transform 0.2s;
+    touch-action: manipulation;
   }
 
   button.submit:hover {
     transform: scale(1.05);
+  }
+
+  /* Летающие эмодзи */
+  #emoji-container {
+    position: fixed;
+    pointer-events: none;
+    inset: 0;
+    overflow: hidden;
+    z-index: 5;
   }
 
   .emoji {
@@ -152,11 +157,11 @@
 
   @media (max-width: 480px) {
     #intro h1, h1.main-title {
-      font-size: 2rem;
+      font-size: 1.6rem;
     }
     #intro button, button.submit {
-      font-size: 1em;
-      padding: 10px 20px;
+      font-size: 1rem;
+      padding: 10px 18px;
     }
     textarea {
       height: 90px;
@@ -180,6 +185,9 @@
     <button class="submit" onclick="sendToTelegram()">Отправить</button>
   </div>
 
+  <!-- Контейнер для эмодзи -->
+  <div id="emoji-container"></div>
+
   <script>
     function showMain() {
       const intro = document.getElementById('intro');
@@ -199,11 +207,11 @@
       emoji.style.left = Math.random() * 100 + "vw";
       emoji.style.setProperty("--x-move", (Math.random() * 100 - 50) + "px");
       emoji.style.animationDuration = (5 + Math.random() * 5) + "s";
-      document.body.appendChild(emoji);
+      document.getElementById("emoji-container").appendChild(emoji);
       setTimeout(() => emoji.remove(), 10000);
     }
 
-    setInterval(createEmoji, 600);
+    setInterval(createEmoji, 800);
 
     function sendToTelegram() {
       const text = document.getElementById("answer").value;
