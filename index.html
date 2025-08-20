@@ -216,7 +216,10 @@
     function sendToTelegram() {
       const text = document.getElementById("answer").value;
       if (text.trim() === "") return;
-      const telegramUrl = `https://t.me/bakai_i?text=${encodeURIComponent(text)}`;
+
+      const cardMessage = `💌 Для тебя открытка:\n\n「 ${text.trim()} 」\n\n🥰 Спасибо, что поделилась со мной! 💖`;
+
+      const telegramUrl = `https://t.me/bakai_i?text=${encodeURIComponent(cardMessage)}`;
       window.location.href = telegramUrl;
     }
   </script>
